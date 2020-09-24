@@ -1,5 +1,6 @@
 using Toybox.WatchUi;
 using Toybox.System as Sys;
+using Toolbox;
 
 class SKIRANDOView extends WatchUi.View {
   function initialize() { View.initialize(); }
@@ -16,11 +17,8 @@ class SKIRANDOView extends WatchUi.View {
   function onUpdate(dc) {
     // Show the current time
     var clockTime = Sys.getClockTime();
-    var timeString = Lang.format("$1$:$2$:$3$", [
-      (clockTime.hour).format("%02d"),
-      (clockTime.min).format("%02d"),
-      (clockTime.sec).format("%02d")
-    ]);
+    var timeString = Toolbox.convertTime(clockTime);
+    
     Sys.println(timeString);
 
     var layerTime = View.findDrawableById("label_id");
